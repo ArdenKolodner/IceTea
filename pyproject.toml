@@ -1,6 +1,6 @@
 [project]
 name = "IceTeaCCI"
-version = "0.4.4"
+version = "0.5.0"
 authors = [
   { name="Arden Kolodner", email="akolodner25@amherst.edu" },
 ]
