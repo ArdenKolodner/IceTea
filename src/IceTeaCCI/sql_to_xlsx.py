@@ -5,13 +5,13 @@ import openpyxl # Used for creating the XLSX file
 from openpyxl.comments import Comment # Used for saving metadata about each field
 import json # Used for storing metadata in cell comments and file description, because it doesn't rely on whitespace like YAML
 import os, platform, subprocess # Used for opening the generated XLSX file
-from .constants import AUTOGEN_PREFIX
+from .constants import AUTOGEN_PREFIX, get_default_xlsx_path, get_default_sql_path
 
 def sql_to_xlsx(arglist=sys.argv[1:]):
   # Parse command line arguments
   parser = argparse.ArgumentParser()
-  parser.add_argument("-i", "--input", help="Path to the SQL script to convert", default="./datasets/sample.sql")
-  parser.add_argument("-o", "--output", help="Path to the XLSX file to create", default="./generated.xlsx")
+  parser.add_argument("-i", "--input", help="Path to the SQL script to convert", default=get_default_sql_path())
+  parser.add_argument("-o", "--output", help="Path to the XLSX file to create", default=get_default_xlsx_path())
 
   parser.add_argument("-ltn", "--log-table-names", help="Log names of converted tables", action="store_true")
   parser.add_argument("-lr", "--log-records", help="Log converted records", action="store_true")

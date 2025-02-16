@@ -4,13 +4,13 @@ import openpyxl # Used for reading from the XLSX file
 import json # Used to parse metadata in cell comments and file description, because it doesn't rely on whitespace like YAML
 import os, platform, subprocess # Used for opening the generated XLSX file
 import send2trash # Used for deleting the XLSX file, so the user can get it back if this was done by accident
-from .constants import AUTOGEN_PREFIX
+from .constants import AUTOGEN_PREFIX, DEFAULT_METADATA, get_default_xlsx_path, get_default_sql_path
 
 def xlsx_to_sql(arglist=sys.argv[1:]):
   # Parse command line arguments
   parser = argparse.ArgumentParser()
-  parser.add_argument("-i", "--input", help="Path to the XLSX script to convert", default="./generated.xlsx")
-  parser.add_argument("-o", "--output", help="Path to the SQL file to create", default="./datasets/sample.sql")
+  parser.add_argument("-i", "--input", help="Path to the XLSX script to convert", default=get_default_xlsx_path())
+  parser.add_argument("-o", "--output", help="Path to the SQL file to create", default=get_default_sql_path())
 
   parser.add_argument("-ltn", "--log-table-names", help="Log names of detected tables", action="store_true")
   parser.add_argument("-lr", "--log-records", help="Log detected records", action="store_true")
